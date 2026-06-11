@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gritter — Лента</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .feed-container {
+      max-width: 60%;
+      margin: 0 auto;
+    }
+    @media (max-width: 1024px) {
+      .feed-container { max-width: 80%; }
+    }
+    @media (max-width: 768px) {
+      .feed-container { max-width: 100%; }
+    }
+    .create-post-row {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+    .profile-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--avatar-bg);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--avatar-letter);
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .profile-icon:hover {
+      opacity: 0.8;
+    }
+    .search-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.3rem 0.8rem;
+    }
+    .search-wrapper .material-icons {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    .search-wrapper input {
+      background: none;
+      border: none;
+      padding: 0.4rem 0;
+      font-size: 0.85rem;
+      width: 180px;
+      color: var(--text-primary);
+    }
+    .search-wrapper input:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar__container">
+      <a href="feed.html" class="navbar__logo">Gritter</a>
+      <div class="search-wrapper">
+        <span class="material-icons">search</span>
+        <input type="text" placeholder="Поиск...">
+      </div>
+      <ul class="navbar__menu" id="navMenu">
+        <li><a href="feed.html" class="navbar__link">Лента</a></li>
+        <li><a href="feed.html" class="navbar__link">Фильтры</a></li>
+        <li><a href="profile.html" class="profile-icon" style="width: 36px; height: 36px;">А</a></li>
+      </ul>
+      <button class="navbar__toggle" id="hamburgerBtn">☰</button>
+    </div>
+  </div>
+
+  <div class="feed-container">
+    <div class="create-post-row">
+      <div class="comment-input-wrapper" style="display: flex; gap: 0.5rem;">
+        <div class="avatar" style="flex-shrink: 0;">А</div>
+            <input type="text" class="input" placeholder="Что нового?" style="flex: 1;">
+            <button class="btn btn--small submit-comment">Поделиться</button>
+      </div>
+    </div>
+
+    <div id="feed-list">
+      <!-- пост 1 -->
+      <div class="post-card">
+        <div class="post-card__header">
+          <div class="avatar">А</div>
+          <div class="post-card__author">
+            <div class="post-card__name">Алексей Смирнов</div>
+            <div class="post-card__date">15 минут назад</div>
+          </div>
+          <button class="btn btn--small btn--outline subscribe-btn" style="margin-left: auto;">+ Подписаться</button>
+        </div>
+        <div class="post-card__content">
+          <div class="post-card__title">Прекрасное утро!</div>
+          <div class="post-card__text">Сегодня отличная погода, наконец-то закончили UI Kit 💙</div>
+        </div>
+        <div class="post-card__meta">
+          <span class="meta-badge meta-badge--positive">ПОЗИТИВ</span>
+          <span class="meta-badge meta-badge--age">0+</span>
+        </div>
+        <div class="post-card__stats">
+          <span class="like-wrapper">
+            <span class="material-icons like-icon">favorite_border</span>
+            <span class="likes-count">12</span>
+          </span>
+          <span class="comment-wrapper">
+            <span class="material-icons comment-icon">chat_bubble_outline</span>
+            <span class="comments-count">3</span>
+          </span>
+        </div>
+        <div class="comments-section">
+          <div class="comment">
+            <div class="comment__avatar">М</div>
+            <div class="comment__content">
+              <span class="comment__author">Мария Иванова</span>
+              <span class="comment__text">❤️ Класс!</span>
+            </div>
+          </div>
+          <div class="comment">
+            <div class="comment__avatar">Д</div>
+            <div class="comment__content">
+              <span class="comment__author">Дмитрий Петров</span>
+              <span class="comment__text">🔥 Отличный пост! Ждём новые фичи</span>
+            </div>
+          </div>
+          <div class="comment-input-wrapper" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+            <input type="text" class="input" placeholder="Написать комментарий..." style="flex: 1;">
+            <button class="btn btn--small submit-comment">Отправить</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- пост 2 с комментариями в новом формате -->
+      <div class="post-card">
+        <div class="post-card__header">
+          <div class="avatar">М</div>
+          <div class="post-card__author">
+            <div class="post-card__name">Мария Иванова</div>
+            <div class="post-card__date">2 часа назад</div>
+          </div>
+          <button class="btn btn--small btn--outline subscribe-btn">+ Подписаться</button>
+        </div>
+        <div class="post-card__content">
+          <div class="post-card__text">Вышла новая версия React 19. Интересно, что там с компилятором?</div>
+        </div>
+        <div class="post-card__meta">
+          <span class="meta-badge meta-badge--age">6+</span>
+        </div>
+        <div class="post-card__stats">
+          <span class="like-wrapper">
+            <span class="material-icons like-icon">favorite_border</span>
+            <span class="likes-count">8</span>
+          </span>
+          <span class="comment-wrapper">
+            <span class="material-icons comment-icon">chat_bubble_outline</span>
+            <span class="comments-count">2</span>
+          </span>
+        </div>
+        <div class="comments-section">
+          <div class="comment">
+            <div class="comment__avatar">А</div>
+            <div class="comment__content">
+              <span class="comment__author">Алексей Смирнов</span>
+              <span class="comment__text">🔥 Уже читаю документацию</span>
+            </div>
+          </div>
+          <div class="comment-input-wrapper" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+            <input type="text" class="input" placeholder="Написать комментарий..." style="flex: 1;">
+            <button class="btn btn--small submit-comment">Отправить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer style="text-align: center; padding: 2rem 0; margin-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.75rem;">
+      © 2026 Gritter. Все права защищены.
+    </footer>
+  </div>
+
+  <!-- Модальное окно (будет использоваться в профиле) -->
+  <div id="modal" class="modal">
+    <div class="modal__content">
+      <div class="modal__header">
+        <h3 id="modal-title">Подписки</h3>
+        <button class="modal__close" id="modalCloseBtn">✕</button>
+      </div>
+      <div class="modal__search">
+        <input type="text" id="modalSearch" placeholder="Поиск...">
+      </div>
+      <div class="modal__list" id="modalList">
+        <!-- сюда динамически подставляются пользователи -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Гамбургер
+    const toggleBtn = document.getElementById('hamburgerBtn');
+    const menu = document.getElementById('navMenu');
+    if (toggleBtn && menu) {
+      toggleBtn.addEventListener('click', () => menu.classList.toggle('active'));
+    }
+
+    // Лайки
+    document.querySelectorAll('.like-icon').forEach(icon => {
+      icon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isLiked = icon.classList.contains('liked');
+        const likesSpan = icon.parentElement.querySelector('.likes-count');
+        let currentLikes = parseInt(likesSpan.textContent);
+        
+        if (!isLiked) {
+          icon.classList.add('liked');
+          icon.textContent = 'favorite';
+          likesSpan.textContent = currentLikes + 1;
+          icon.style.transform = 'scale(1.2)';
+          setTimeout(() => { icon.style.transform = 'scale(1)'; }, 150);
+        } else {
+          icon.classList.remove('liked');
+          icon.textContent = 'favorite_border';
+          likesSpan.textContent = currentLikes - 1;
+        }
+      });
+    });
+
+    // Раскрытие комментариев
+    document.querySelectorAll('.post-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.subscribe-btn') ||
+            e.target.closest('.like-icon') ||
+            e.target.closest('.comment-icon') ||
+            e.target.closest('.submit-comment') ||
+            e.target.closest('input')) {
+          return;
+        }
+        card.classList.toggle('post-card--expanded');
+      });
+    });
+
+    // Добавление комментариев (НОВЫЙ ФОРМАТ с аватаркой)
+    document.querySelectorAll('.submit-comment').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const input = btn.parentElement.querySelector('input');
+        const commentText = input.value.trim();
+        
+        if (commentText) {
+          const commentsSection = btn.closest('.comments-section');
+          const newComment = document.createElement('div');
+          newComment.className = 'comment';
+          newComment.innerHTML = `
+            <div class="comment__avatar">В</div>
+            <div class="comment__content">
+              <span class="comment__author">Вы</span>
+              <span class="comment__text">${escapeHtml(commentText)}</span>
+            </div>
+          `;
+          
+          const inputWrapper = commentsSection.querySelector('.comment-input-wrapper');
+          commentsSection.insertBefore(newComment, inputWrapper);
+          
+          input.value = '';
+          const commentsCountSpan = btn.closest('.post-card').querySelector('.comments-count');
+          if (commentsCountSpan) {
+            commentsCountSpan.textContent = parseInt(commentsCountSpan.textContent) + 1;
+          }
+        }
+      });
+    });
+
+    // Подписка
+    document.querySelectorAll('.subscribe-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (btn.textContent === '+ Подписаться') {
+          btn.textContent = '✓ Отписаться';
+          btn.classList.add('subscribed');
+        } else {
+          btn.textContent = '+ Подписаться';
+          btn.classList.remove('subscribed');
+        }
+      });
+    });
+
+    // Helper для экранирования HTML
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>

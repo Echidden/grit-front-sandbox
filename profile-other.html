@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gritter — Профиль пользователя</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .profile-container {
+      max-width: 60%;
+      margin: 0 auto;
+    }
+    @media (max-width: 1024px) {
+      .profile-container { max-width: 80%; }
+    }
+    @media (max-width: 768px) {
+      .profile-container { max-width: 100%; }
+    }
+    .profile-header-custom {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+      border: 1px solid var(--border-color);
+    }
+    .stats-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+    /* Стили для поиска (как на других страницах) */
+    .search-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.3rem 0.8rem;
+    }
+    .search-wrapper .material-icons {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    .search-wrapper input {
+      background: none;
+      border: none;
+      padding: 0.4rem 0;
+      font-size: 0.85rem;
+      width: 180px;
+      color: var(--text-primary);
+    }
+    .search-wrapper input:focus {
+      outline: none;
+    }
+    .search-wrapper input::placeholder {
+      color: var(--text-secondary);
+    }
+    .profile-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--avatar-bg);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--avatar-letter);
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .profile-icon:hover {
+      opacity: 0.8;
+    }
+    .subscribe-btn.subscribed {
+      background: var(--accent-teal);
+      color: white;
+      border-color: var(--accent-teal);
+    }
+    .subscribe-btn.subscribed:hover {
+      background: var(--accent-cyan);
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar__container">
+      <a href="feed.html" class="navbar__logo">Gritter</a>
+      <div class="search-wrapper">
+        <span class="material-icons">search</span>
+        <input type="text" placeholder="Поиск...">
+      </div>
+      <ul class="navbar__menu" id="navMenu">
+        <li><a href="feed.html" class="navbar__link">Лента</a></li>
+        <li><a href="#" class="navbar__link">Фильтры</a></li>
+        <li><a href="profile.html" class="profile-icon" style="width: 36px; height: 36px;">А</a></li>
+      </ul>
+      <button class="navbar__toggle" id="hamburgerBtn">☰</button>
+    </div>
+  </div>
+
+  <div class="profile-container">
+    <div class="profile-header-custom">
+      <div class="avatar-large">Е</div>
+      <div>
+        <h2>Елена Воронова</h2>
+            <div class="profile-stats">
+                <span>24 публикации</span>
+                <button id="followersBtn">128 подписчиков</button>
+                <button id="followingBtn">15 подписок</button>
+            </div>
+        <div style="margin-top: 1rem;">
+          <button class="btn btn--small btn--outline subscribe-main" id="subscribe-main">+ Подписаться</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 1rem;">Посты автора</h3>
+    <div id="other-posts">
+      <!-- пост 1 -->
+      <div class="post-card">
+        <div class="post-card__header">
+          <div class="avatar">Е</div>
+          <div class="post-card__author">
+            <div class="post-card__name">Елена Воронова</div>
+            <div class="post-card__date">1 день назад</div>
+          </div>
+          <button class="btn btn--small btn--outline subscribe-btn" style="margin-left: auto;">+ Подписаться</button>
+        </div>
+        <div class="post-card__content">
+          <div class="post-card__text">CSS Grid — это магия! ✨</div>
+        </div>
+        <div class="post-card__meta">
+          <span class="meta-badge meta-badge--positive">ПОЗИТИВ</span>
+          <span class="meta-badge meta-badge--age">0+</span>
+        </div>
+        <div class="post-card__stats">
+          <span class="like-wrapper">
+            <span class="material-icons like-icon">favorite_border</span>
+            <span class="likes-count">34</span>
+          </span>
+          <span class="comment-wrapper">
+            <span class="material-icons comment-icon">chat_bubble_outline</span>
+            <span class="comments-count">7</span>
+          </span>
+        </div>
+        <div class="comments-section">
+          <div class="comment">🔥 Согласен!</div>
+          <div class="comment-input-wrapper" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+            <input type="text" class="input" placeholder="Написать комментарий..." style="flex: 1;">
+            <button class="btn btn--small submit-comment">Отправить</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- пост 2 -->
+      <div class="post-card">
+        <div class="post-card__header">
+          <div class="avatar">Е</div>
+          <div class="post-card__author">
+            <div class="post-card__name">Елена Воронова</div>
+            <div class="post-card__date">3 дня назад</div>
+          </div>
+          <button class="btn btn--small btn--outline subscribe-btn">+ Подписаться</button>
+        </div>
+        <div class="post-card__content">
+          <div class="post-card__title">Совет дня</div>
+          <div class="post-card__text">Используйте CSS-переменные, это сильно упрощает поддержку кода!</div>
+        </div>
+        <div class="post-card__meta">
+          <span class="meta-badge meta-badge--negative">НЕГАТИВ</span>
+          <span class="meta-badge meta-badge--age">0+</span>
+        </div>
+        <div class="post-card__stats">
+          <span class="like-wrapper">
+            <span class="material-icons like-icon">favorite_border</span>
+            <span class="likes-count">52</span>
+          </span>
+          <span class="comment-wrapper">
+            <span class="material-icons comment-icon">chat_bubble_outline</span>
+            <span class="comments-count">12</span>
+          </span>
+        </div>
+        <div class="comments-section">
+          <div class="comment">👍 Полезный совет!</div>
+          <div class="comment">Спасибо, Елена!</div>
+          <div class="comment-input-wrapper" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+            <input type="text" class="input" placeholder="Написать комментарий..." style="flex: 1;">
+            <button class="btn btn--small submit-comment">Отправить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer style="text-align: center; padding: 2rem 0; margin-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.75rem;">
+      © 2026 Gritter. Все права защищены.
+    </footer>
+  </div>
+
+  <script>
+    // ========== ГАМБУРГЕР-МЕНЮ ==========
+    const toggleBtn = document.getElementById('hamburgerBtn');
+    const menu = document.getElementById('navMenu');
+    if (toggleBtn && menu) {
+      toggleBtn.addEventListener('click', () => menu.classList.toggle('active'));
+    }
+
+    // ========== ПОДПИСКА (главная кнопка в профиле) ==========
+    const mainSubscribeBtn = document.getElementById('subscribe-main');
+    if (mainSubscribeBtn) {
+      mainSubscribeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isSubscribed = mainSubscribeBtn.classList.contains('subscribed');
+        if (isSubscribed) {
+          mainSubscribeBtn.textContent = '+ Подписаться';
+          mainSubscribeBtn.classList.remove('subscribed');
+        } else {
+          mainSubscribeBtn.textContent = '✓ Отписаться';
+          mainSubscribeBtn.classList.add('subscribed');
+        }
+      });
+    }
+
+    // ========== ПОДПИСКА (кнопки внутри постов) ==========
+    document.querySelectorAll('.subscribe-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isSubscribed = btn.classList.contains('subscribed');
+        if (isSubscribed) {
+          btn.textContent = '+ Подписаться';
+          btn.classList.remove('subscribed');
+        } else {
+          btn.textContent = '✓ Отписаться';
+          btn.classList.add('subscribed');
+        }
+      });
+    });
+
+    // ========== ЛАЙКИ ==========
+    document.querySelectorAll('.like-icon').forEach(icon => {
+      icon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        const isLiked = icon.classList.contains('liked');
+        const likesSpan = icon.parentElement.querySelector('.likes-count');
+        let currentLikes = parseInt(likesSpan.textContent);
+        
+        if (!isLiked) {
+          icon.classList.add('liked');
+          icon.textContent = 'favorite';
+          likesSpan.textContent = currentLikes + 1;
+          icon.style.transform = 'scale(1.2)';
+          setTimeout(() => { icon.style.transform = 'scale(1)'; }, 150);
+        } else {
+          icon.classList.remove('liked');
+          icon.textContent = 'favorite_border';
+          likesSpan.textContent = currentLikes - 1;
+        }
+      });
+    });
+
+    // ========== РАСКРЫТИЕ КОММЕНТАРИЕВ ==========
+    document.querySelectorAll('.post-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.subscribe-btn') ||
+            e.target.closest('.like-icon') ||
+            e.target.closest('.comment-icon') ||
+            e.target.closest('.submit-comment') ||
+            e.target.closest('input')) {
+          return;
+        }
+        card.classList.toggle('post-card--expanded');
+      });
+    });
+
+    // ========== ДОБАВЛЕНИЕ КОММЕНТАРИЕВ ==========
+    document.querySelectorAll('.submit-comment').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const input = btn.parentElement.querySelector('input');
+        const commentText = input.value.trim();
+        
+        if (commentText) {
+          const commentsSection = btn.closest('.comments-section');
+          const newComment = document.createElement('div');
+          newComment.className = 'comment';
+          newComment.innerHTML = `💬 ${commentText}`;
+          
+          const inputWrapper = commentsSection.querySelector('.comment-input-wrapper');
+          commentsSection.insertBefore(newComment, inputWrapper);
+          
+          input.value = '';
+          const commentsCountSpan = btn.closest('.post-card').querySelector('.comments-count');
+          if (commentsCountSpan) {
+            commentsCountSpan.textContent = parseInt(commentsCountSpan.textContent) + 1;
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

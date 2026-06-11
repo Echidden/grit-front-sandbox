@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gritter — Мой профиль</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .profile-container {
+      max-width: 60%;
+      margin: 0 auto;
+    }
+    @media (max-width: 1024px) {
+      .profile-container { max-width: 80%; }
+    }
+    @media (max-width: 768px) {
+      .profile-container { max-width: 100%; }
+    }
+    .profile-header-custom {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+      border: 1px solid var(--border-color);
+    }
+    .stats-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .stat-link {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: color 0.2s;
+      padding: 0;
+    }
+    .stat-link:hover {
+      color: var(--accent-cyan);
+    }
+    .search-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.3rem 0.8rem;
+    }
+    .search-wrapper .material-icons {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    .search-wrapper input {
+      background: none;
+      border: none;
+      padding: 0.4rem 0;
+      font-size: 0.85rem;
+      width: 180px;
+      color: var(--text-primary);
+    }
+    .profile-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--avatar-bg);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--avatar-letter);
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar__container">
+      <a href="feed.html" class="navbar__logo">Gritter</a>
+      <div class="search-wrapper">
+        <span class="material-icons">search</span>
+        <input type="text" placeholder="Поиск...">
+      </div>
+      <ul class="navbar__menu" id="navMenu">
+        <li><a href="feed.html" class="navbar__link">Лента</a></li>
+        <li><a href="#" class="navbar__link">Фильтры</a></li>
+        <li><a href="profile.html" class="profile-icon">А</a></li>
+      </ul>
+      <button class="navbar__toggle" id="hamburgerBtn">☰</button>
+    </div>
+  </div>
+
+  <div class="profile-container">
+    <div class="profile-header-custom">
+      <div class="avatar-large">А</div>
+      <div>
+        <h2>Алексей Смирнов</h2>
+            <div class="profile-stats">
+                <span>24 публикации</span>
+                <button id="followersBtn">128 подписчиков</button>
+                <button id="followingBtn">15 подписок</button>
+            </div>
+        <div class="flex-row" style="margin-top: 1rem; gap: 0.75rem;">
+          <button class="btn btn--small" id="create-post-btn">Создать пост</button>
+          <button class="btn btn--small btn--outline" id="change-password-btn">Сменить пароль</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 1rem;">Мои посты</h3>
+    <div id="my-posts">
+      <div class="post-card">
+        <div class="post-card__header">
+          <div class="avatar">А</div>
+          <div class="post-card__author">
+            <div class="post-card__name">Алексей Смирнов</div>
+            <div class="post-card__date">3 часа назад</div>
+          </div>
+          <button class="post-card__menu" title="Меню">⋮</button>
+        </div>
+        <div class="post-card__content">
+          <div class="post-card__title">Мой первый пост!</div>
+          <div class="post-card__text">Наконец-то запустили Gritter 🚀</div>
+        </div>
+        <div class="post-card__meta">
+          <span class="meta-badge meta-badge--positive">ПОЗИТИВ</span>
+          <span class="meta-badge meta-badge--age">0+</span>
+        </div>
+        <div class="post-card__stats">
+          <span class="like-wrapper"><span class="material-icons like-icon">favorite_border</span><span class="likes-count">20</span></span>
+          <span class="comment-wrapper"><span class="material-icons comment-icon">chat_bubble_outline</span><span class="comments-count">5</span></span>
+        </div>
+        <div class="comments-section">
+          <div class="comment">
+            <div class="comment__avatar">М</div>
+            <div class="comment__content">
+              <span class="comment__author">Мария Иванова</span>
+              <span class="comment__text">👍 Отлично!</span>
+            </div>
+          </div>
+          <div class="comment-input-wrapper" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+            <input type="text" class="input" placeholder="Написать комментарий..." style="flex: 1;">
+            <button class="btn btn--small submit-comment">Отправить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer style="text-align: center; padding: 2rem 0; margin-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.75rem;">
+      © 2026 Gritter. Все права защищены.
+    </footer>
+  </div>
+
+  <!-- Модальное окно -->
+  <div id="modal" class="modal">
+    <div class="modal__content">
+      <div class="modal__header">
+        <h3 id="modal-title">Подписки</h3>
+        <button class="modal__close" id="modalCloseBtn">✕</button>
+      </div>
+      <div class="modal__search">
+        <input type="text" id="modalSearch" placeholder="Поиск...">
+      </div>
+      <div class="modal__list" id="modalList"></div>
+    </div>
+  </div>
+
+  <script>
+    // Данные для подписок и подписчиков
+    const followingData = [
+      { name: 'Елена Воронова', username: '@elena_v', avatar: 'Е', action: 'Отписаться' },
+      { name: 'Дмитрий Петров', username: '@dmitry_p', avatar: 'Д', action: 'Отписаться' },
+      { name: 'Мария Иванова', username: '@maria_i', avatar: 'М', action: 'Отписаться' },
+      { name: 'Анна Смирнова', username: '@anna_s', avatar: 'А', action: 'Отписаться' },
+    ];
+
+    const followersData = [
+      { name: 'Елена Воронова', username: '@elena_v', avatar: 'Е', action: 'Удалить' },
+      { name: 'Дмитрий Петров', username: '@dmitry_p', avatar: 'Д', action: 'Удалить' },
+      { name: 'Ольга Кузнецова', username: '@olga_k', avatar: 'О', action: 'Удалить' },
+      { name: 'Иван Соколов', username: '@ivan_s', avatar: 'И', action: 'Удалить' },
+      { name: 'Мария Иванова', username: '@maria_i', avatar: 'М', action: 'Удалить' },
+    ];
+
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalList = document.getElementById('modalList');
+    const modalSearch = document.getElementById('modalSearch');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    
+    let currentData = [];
+
+    function renderModalList(data) {
+      const searchTerm = modalSearch.value.toLowerCase();
+      const filtered = data.filter(item => 
+        item.name.toLowerCase().includes(searchTerm) || 
+        item.username.toLowerCase().includes(searchTerm)
+      );
+      
+      if (filtered.length === 0) {
+        modalList.innerHTML = '<div style="padding: 2rem; text-align: center; color: var(--text-secondary);">Ничего не найдено</div>';
+        return;
+      }
+      
+      modalList.innerHTML = filtered.map(item => `
+        <div class="modal__item">
+          <div class="modal__user">
+            <div class="modal__avatar">${item.avatar}</div>
+            <div class="modal__info">
+              <div class="modal__name">${escapeHtml(item.name)}</div>
+              <div class="modal__username">${escapeHtml(item.username)}</div>
+            </div>
+          </div>
+          <button class="modal__action" data-action="${item.action}" data-name="${item.name}">${item.action}</button>
+        </div>
+      `).join('');
+      
+      // Добавляем обработчики для кнопок
+      document.querySelectorAll('.modal__action').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const action = btn.dataset.action;
+          const name = btn.dataset.name;
+          alert(`🔔 ${action}: ${name} (демо-режим)`);
+          // Здесь будет реальная логика в будущем
+        });
+      });
+    }
+
+    function openModal(title, data) {
+      currentData = data;
+      modalTitle.textContent = title;
+      modalSearch.value = '';
+      renderModalList(currentData);
+      modal.classList.add('active');
+    }
+
+    document.getElementById('followersBtn')?.addEventListener('click', () => openModal('Подписчики', followersData));
+    document.getElementById('followingBtn')?.addEventListener('click', () => openModal('Подписки', followingData));
+    
+    modalCloseBtn.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+    modalSearch.addEventListener('input', () => renderModalList(currentData));
+
+    // Гамбургер
+    const toggleBtn = document.getElementById('hamburgerBtn');
+    const menu = document.getElementById('navMenu');
+    if (toggleBtn && menu) {
+      toggleBtn.addEventListener('click', () => menu.classList.toggle('active'));
+    }
+
+    // Лайки
+    document.querySelectorAll('.like-icon').forEach(icon => {
+      icon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isLiked = icon.classList.contains('liked');
+        const likesSpan = icon.parentElement.querySelector('.likes-count');
+        let currentLikes = parseInt(likesSpan.textContent);
+        if (!isLiked) {
+          icon.classList.add('liked');
+          icon.textContent = 'favorite';
+          likesSpan.textContent = currentLikes + 1;
+        } else {
+          icon.classList.remove('liked');
+          icon.textContent = 'favorite_border';
+          likesSpan.textContent = currentLikes - 1;
+        }
+      });
+    });
+
+    // Раскрытие комментариев
+    document.querySelectorAll('.post-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.post-card__menu') || e.target.closest('.like-icon') || e.target.closest('.submit-comment') || e.target.closest('input')) return;
+        card.classList.toggle('post-card--expanded');
+      });
+    });
+
+    // Добавление комментариев
+    document.querySelectorAll('.submit-comment').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const input = btn.parentElement.querySelector('input');
+        const commentText = input.value.trim();
+        if (commentText) {
+          const commentsSection = btn.closest('.comments-section');
+          const newComment = document.createElement('div');
+          newComment.className = 'comment';
+          newComment.innerHTML = `
+            <div class="comment__avatar">Я</div>
+            <div class="comment__content">
+              <span class="comment__author">Вы</span>
+              <span class="comment__text">${escapeHtml(commentText)}</span>
+            </div>
+          `;
+          const inputWrapper = commentsSection.querySelector('.comment-input-wrapper');
+          commentsSection.insertBefore(newComment, inputWrapper);
+          input.value = '';
+          const commentsCountSpan = btn.closest('.post-card').querySelector('.comments-count');
+          if (commentsCountSpan) commentsCountSpan.textContent = parseInt(commentsCountSpan.textContent) + 1;
+        }
+      });
+    });
+
+    document.getElementById('change-password-btn')?.addEventListener('click', () => alert('🔐 Демо: смена пароля'));
+    document.getElementById('create-post-btn')?.addEventListener('click', () => alert('✍️ Демо: создание нового поста'));
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>

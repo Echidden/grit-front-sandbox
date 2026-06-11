@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gritter — Вход / Регистрация</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    .auth-card {
+      width: 100%;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .auth-footer {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-card">
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Вход</button>
+      <button class="auth-tab" data-tab="register">Регистрация</button>
+    </div>
+
+    <!-- Форма входа -->
+    <div id="login-form" class="auth-form">
+      <div class="form-group">
+        <div class="input-group">
+          <label>Логин</label>
+          <input type="text" class="input" placeholder="Введите логин" id="login-username">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <label>Пароль</label>
+          <input type="password" class="input" placeholder="••••••" id="login-password">
+        </div>
+      </div>
+      <div class="flex-row" style="justify-content: space-between; margin-top: 1rem;">
+        <button class="btn" id="login-btn">Войти</button>
+        <a href="#" id="forgot-password">Не помню пароль</a>
+      </div>
+    </div>
+
+    <!-- Форма регистрации -->
+    <div id="register-form" class="auth-form" style="display: none;">
+      <div class="form-group">
+        <div class="input-group">
+          <label>Имя</label>
+          <input type="text" class="input" placeholder="Алексей" id="reg-firstname">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <label>Фамилия</label>
+          <input type="text" class="input" placeholder="Смирнов" id="reg-lastname">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <label>Логин</label>
+          <input type="text" class="input" placeholder="alex_smirnov" id="reg-login">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <label>Пароль</label>
+          <input type="password" class="input" placeholder="••••••" id="reg-password">
+        </div>
+      </div>
+      <button class="btn" style="width: 100%; margin-top: 0.5rem;" id="register-btn">Зарегистрироваться</button>
+    </div>
+
+    <div class="auth-footer">
+      <span id="demo-hint">Демо: нажми на кнопку для перехода в ленту</span>
+    </div>
+  </div>
+
+  <script>
+    // переключение табов
+    const tabs = document.querySelectorAll('.auth-tab');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        if (tab.dataset.tab === 'login') {
+          loginForm.style.display = 'block';
+          registerForm.style.display = 'none';
+        } else {
+          loginForm.style.display = 'none';
+          registerForm.style.display = 'block';
+        }
+      });
+    });
+
+    // вход (демо-переход)
+    document.getElementById('login-btn').addEventListener('click', () => {
+      window.location.href = 'feed.html';
+    });
+
+    // регистрация (демо)
+    document.getElementById('register-btn').addEventListener('click', () => {
+      window.location.href = 'feed.html';
+    });
+
+    // забыли пароль
+    document.getElementById('forgot-password').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Инструкция по восстановлению отправлена на почту (демо)');
+    });
+  </script>
+</body>
+</html>
