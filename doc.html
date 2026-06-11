@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Kit – мини-посты (соцсеть)</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .doc-section {
+      margin-bottom: 3rem;
+    }
+    .doc-section h2 {
+      margin-bottom: 1.5rem;
+      margin-top: 2rem;
+    }
+    .component-demo {
+      background: #0a0e1a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1 style="color: #00ffff; margin-bottom: 0.5rem;">UI Kit — Социальная сеть мини-постов</h1>
+
+  <div class="doc-section">
+    <h2>Кнопки</h2>
+    <div class="component-demo">
+      <div class="flex-row">
+        <button class="btn">Обычная</button>
+        <button class="btn btn--outline">Ghost</button>
+        <button class="btn" disabled>Отключена</button>
+        <button class="btn btn--small">Маленькая</button>
+        <button class="btn btn--medium">Средняя</button>
+        <button class="btn btn--large">Большая</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>Поля ввода</h2>
+    <div class="flex-row">
+      <div class="input-group">
+        <label>Логин</label>
+        <input type="text" class="input" placeholder="Введите логин">
+      </div>
+      <div class="input-group">
+        <label>Пароль</label>
+        <input type="password" class="input" placeholder="••••••">
+      </div>
+      <div class="input-group">
+        <label>С ошибкой</label>
+        <input type="text" class="input input--error" value="некорректный ввод">
+        <span class="input-error-msg">Это обязательное поле!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- РЕГИСТРАЦИЯ / АВТОРИЗАЦИЯ -->
+  <div class="doc-section">
+    <h2>Регистрация / Авторизация (табы)</h2>
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="auth-tab active">Вход</button>
+        <button class="auth-tab">Регистрация</button>
+      </div>
+      <!-- Форма входа -->
+      <div class="auth-form">
+        <div class="input-group" style="margin-bottom: 1rem;">
+          <label>Логин</label>
+          <input type="text" class="input" placeholder="your_username">
+        </div>
+        <div class="input-group" style="margin-bottom: 1rem;">
+          <label>Пароль</label>
+          <input type="password" class="input" placeholder="******">
+        </div>
+        <div class="flex-row" style="justify-content: space-between;">
+          <button class="btn">Войти</button>
+          <a href="#">Забыли пароль?</a>
+        </div>
+      </div>
+      <!-- Форма регистрации (скрыта, для демо можно показать кнопкой) — в реальности переключение через js -->
+    </div>
+  </div>
+
+<!-- КАРТОЧКИ ПОСТОВ (основной компонент) -->
+<div class="doc-section">
+  <h2>Карточки постов (свой / чужой)</h2>
+  <div class="grid-3cols">
+    
+    <!-- СВОЙ ПОСТ (есть меню из трёх точек) -->
+    <div class="post-card">
+      <div class="post-card__header">
+        <div class="avatar">А</div>
+        <div class="post-card__author">
+          <div class="post-card__name">Алексей Смирнов</div>
+          <div class="post-card__date">15 минут назад</div>
+        </div>
+        <button class="post-card__menu" title="Меню">⋮</button>
+      </div>
+      <div class="post-card__content">
+        <div class="post-card__title">Первый пост!</div>
+        <div class="post-card__text">Наконец-то запустили нашу мини-соцсеть. Очень нравится стиль.</div>
+      </div>
+      <div class="post-card__meta">
+        <span class="meta-badge meta-badge--positive">ПОЗИТИВ</span>
+        <span class="meta-badge meta-badge--age">0+</span>
+      </div>
+      <div class="post-card__stats">
+        <span class="like-wrapper">
+          <span class="material-icons like-icon">favorite_border</span>
+          <span class="likes-count">12</span>
+        </span>
+        <span class="comment-wrapper">
+          <span class="material-icons comment-icon">chat_bubble_outline</span>
+          <span class="comments-count">4</span>
+        </span>
+      </div>
+      <div class="comments-section">
+        <div class="comment">Классный пост!</div>
+        <div class="comment">Ждем новые фичи</div>
+        <div class="comment-input-wrapper" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+          <input type="text" class="input" placeholder="Написать комментарий..." style="flex: 1;">
+          <button class="btn btn--small submit-comment" style="white-space: nowrap;">Отправить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЧУЖОЙ ПОСТ (кнопка подписки вместо меню) -->
+    <div class="post-card">
+      <div class="post-card__header">
+        <div class="avatar">Е</div>
+        <div class="post-card__author">
+          <div class="post-card__name">Елена Воронова</div>
+          <div class="post-card__date">2 часа назад</div>
+        </div>
+        <button class="btn btn--small btn--outline subscribe-btn" style="margin-left: auto;">+ Подписаться</button>
+      </div>
+      <div class="post-card__content">
+        <div class="post-card__text">Делаем UI Kit для соцсети.</div>
+      </div>
+      <div class="post-card__meta">
+        <span class="meta-badge meta-badge--positive">ПОЗИТИВ</span>
+        <span class="meta-badge meta-badge--age">6+</span>
+      </div>
+      <div class="post-card__stats">
+        <span class="like-wrapper">
+          <span class="material-icons like-icon">favorite_border</span>
+          <span class="likes-count">47</span>
+        </span>
+        <span class="comment-wrapper">
+          <span class="material-icons comment-icon">chat_bubble_outline</span>
+          <span class="comments-count">8</span>
+        </span>
+      </div>
+      <div class="comments-section">
+        <div class="comment">Отличный пост!</div>
+        <div class="comment">Согласен, БЭМ рулит</div>
+        <div class="comment-input-wrapper" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+          <input type="text" class="input" placeholder="Написать комментарий..." style="flex: 1;">
+          <button class="btn btn--small submit-comment" style="white-space: nowrap;">Отправить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ПОСТ С НЕГАТИВНЫМ ТОНОМ + возрастной ценз -->
+    <div class="post-card">
+      <div class="post-card__header">
+        <div class="avatar">Д</div>
+        <div class="post-card__author">
+          <div class="post-card__name">Дмитрий П.</div>
+          <div class="post-card__date">Вчера</div>
+        </div>
+        <button class="btn btn--small btn--outline subscribe-btn">Подписаться</button>
+      </div>
+      <div class="post-card__content">
+        <div class="post-card__title">Разочарование</div>
+        <div class="post-card__text">Иногда баги выводят из себя, но мы справимся.</div>
+      </div>
+      <div class="post-card__meta">
+        <span class="meta-badge meta-badge--negative">НЕГАТИВ</span>
+        <span class="meta-badge meta-badge--age">12+</span>
+      </div>
+      <div class="post-card__stats">
+        <span class="like-wrapper">
+          <span class="material-icons like-icon">favorite_border</span>
+          <span class="likes-count">3</span>
+        </span>
+        <span class="comment-wrapper">
+          <span class="material-icons comment-icon">chat_bubble_outline</span>
+          <span class="comments-count">1</span>
+        </span>
+      </div>
+      <div class="comments-section">
+        <div class="comment">Всё починим!</div>
+        <div class="comment-input-wrapper" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+          <input type="text" class="input" placeholder="Написать комментарий..." style="flex: 1;">
+          <button class="btn btn--small submit-comment" style="white-space: nowrap;">Отправить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="demo-caption" style="margin-top: 1rem; color: #9ca3af;">
+ 
+  </p>
+</div>
+
+  <div class="doc-section">
+    <h2>Профиль пользователя</h2>
+    <div class="profile-header">
+      <div class="avatar-large">А</div>
+      <div class="profile-info">
+        <h2>Алексей Смирнов</h2>
+        <div class="profile-stats">
+          <span>24 подписки</span>
+          <span>128 подписчиков</span>
+        </div>
+        <div class="flex-row" style="margin-top: 0.75rem;">
+          <button class="btn btn--small">Создать пост</button>
+          <button class="btn btn--small btn--outline">Сменить пароль</button>
+        </div>
+      </div>
+    </div>
+    <div class="user-posts">
+      <h3 style="margin-bottom: 1rem;">Мои посты</h3>
+      <div class="grid-3cols">
+        <!-- мини-версия своего поста -->
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>Чекбоксы, радио, выпадающий список</h2>
+    <div class="flex-row">
+      <label class="checkbox"><input type="checkbox"> Показывать только позитивные посты</label>
+      <label class="radio"><input type="radio" name="filter" checked> Сначала новые</label>
+      <label class="radio"><input type="radio" name="filter"> Топ лайки</label>
+      <div class="dropdown">
+        <select>
+          <option>Возрастной ценз: все</option>
+          <option>0+</option>
+          <option>12+</option>
+          <option>18+</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <h2>Навигационное меню (адаптивное)</h2>
+    <div class="navbar">
+      <div class="navbar__container">
+        <a href="#" class="navbar__logo">✧ mini‑twit ✧</a>
+        <button class="navbar__toggle" id="hamburgerBtn">☰</button>
+        <ul class="navbar__menu" id="navMenu">
+          <li><a href="#" class="navbar__link">Лента</a></li>
+          <li><a href="#" class="navbar__link">Профиль</a></li>
+          <li><a href="#" class="navbar__link">Создать пост</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Гамбургер-меню
+  const toggleBtn = document.getElementById('hamburgerBtn');
+  const menu = document.getElementById('navMenu');
+  if (toggleBtn && menu) {
+    toggleBtn.addEventListener('click', () => menu.classList.toggle('active'));
+  }
+  // Раскрытие комментариев по клику на карточку
+  document.querySelectorAll('.post-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.post-card__menu') || e.target.closest('.btn')) return;
+      card.classList.toggle('post-card--expanded');
+    });
+  });
+
+  // ЛАЙКИ (переключение с Material Icons)
+document.querySelectorAll('.like-icon').forEach(icon => {
+  icon.addEventListener('click', (e) => {
+    e.stopPropagation(); // чтобы не раскрывались комментарии
+    
+    const isLiked = icon.classList.contains('liked');
+    const likesSpan = icon.parentElement.querySelector('.likes-count');
+    let currentLikes = parseInt(likesSpan.textContent);
+    
+    if (!isLiked) {
+      // ставим лайк
+      icon.classList.add('liked');
+      icon.textContent = 'favorite'; // залитое сердечко
+      likesSpan.textContent = currentLikes + 1;
+      
+      // анимация
+      icon.style.transform = 'scale(1.2)';
+      setTimeout(() => { icon.style.transform = 'scale(1)'; }, 150);
+    } else {
+      // убираем лайк
+      icon.classList.remove('liked');
+      icon.textContent = 'favorite_border'; // outline
+      likesSpan.textContent = currentLikes - 1;
+    }
+  });
+});
+
+//  РАСКРЫТИЕ КОММЕНТАРИЕВ 
+document.querySelectorAll('.post-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    // не раскрываем, если кликнули на кнопку, иконку лайка или поле ввода
+    if (e.target.closest('.post-card__menu') || 
+        e.target.closest('.subscribe-btn') ||
+        e.target.closest('.like-icon') ||
+        e.target.closest('.comment-icon') ||
+        e.target.closest('.submit-comment') ||
+        e.target.closest('input')) {
+      return;
+    }
+    card.classList.toggle('post-card--expanded');
+  });
+});
+
+// ДОБАВЛЕНИЕ НОВЫХ КОММЕНТАРИЕВ 
+document.querySelectorAll('.submit-comment').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const input = btn.parentElement.querySelector('input');
+    const commentText = input.value.trim();
+    
+    if (commentText) {
+      const commentsSection = btn.closest('.comments-section');
+      const newComment = document.createElement('div');
+      newComment.className = 'comment';
+      newComment.innerHTML = `💬 ${commentText}`;
+      
+      // вставляем перед полем ввода
+      const inputWrapper = commentsSection.querySelector('.comment-input-wrapper');
+      commentsSection.insertBefore(newComment, inputWrapper);
+      
+      // очищаем поле и увеличиваем счётчик комментариев
+      input.value = '';
+      const commentsCountSpan = btn.closest('.post-card').querySelector('.comments-count');
+      if (commentsCountSpan) {
+        commentsCountSpan.textContent = parseInt(commentsCountSpan.textContent) + 1;
+      }
+    }
+  });
+});
+
+// ПОДПИСКА (переключение кнопки) 
+document.querySelectorAll('.subscribe-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isSubscribed = btn.classList.contains('subscribed');
+    if (isSubscribed) {
+      btn.textContent = '+ Подписаться';
+      btn.classList.remove('subscribed');
+    } else {
+      btn.textContent = '✓ Отписаться';
+      btn.classList.add('subscribed');
+    }
+  });
+});
+</script>
+</body>
+</html>
